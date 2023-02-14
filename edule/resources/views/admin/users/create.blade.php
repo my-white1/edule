@@ -9,7 +9,7 @@
         <div class="card-body p-3">
             <div class="container-fluid py-4">
                 <div class="col-md-6">
-                    <form action="{{ route('users.store') }}" method="POST">
+                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="example-text-input" class="form-control-label">User</label>
@@ -17,15 +17,21 @@
                         </div>
                         <div class="form-group">
                             <label for="example-text-input" class="form-control-label">Eamil</label>
-                            <input type="email" class="form-control" name="email" >
+                            <input type="email" class="form-control" name="email"  required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="example-text-input" class="form-control-label">Image</label>
+                            <input type="file" class="form-control" name="image"  required>
                         </div>
                         
-                        <div class="form-group">
+                        
+                        <div class="form-group col-md-6">
                             <label for="example-text-input" class="form-control-label">Password</label>
                             <input name="password" type="password" class="form-control" >
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="example-text-input" class="form-control-label">Password Confirmation</label>
                             <input name="password_confirmation" type="password" class="form-control" >
                         </div>

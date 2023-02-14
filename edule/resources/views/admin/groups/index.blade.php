@@ -18,6 +18,7 @@
                             <table class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
+                                      
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             TItle</th>
                                         <th
@@ -74,6 +75,8 @@
                                             <td>
                                                 <span class="text-xs font-weight-bold">{{ $group->end }}</span>
                                             </td>
+                                            
+                                            @can('groups_actions')
                                             <td class="d-flex">
                                                 <a href="{{ route('groups.edit', $group->id) }}" class=""
                                                     data-toggle="tooltip" data-original-title="Edit user">
@@ -86,6 +89,7 @@
                                                         type="submit"></button>
                                                 </form>
                                             </td>
+                                            @endcan
                                         </tr>
                                     @endforeach
                                 </tbody>

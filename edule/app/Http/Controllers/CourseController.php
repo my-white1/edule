@@ -14,7 +14,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::with('groups')->get();
         return view('courses.index', compact('courses'));
     }
 
@@ -45,8 +45,10 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Course $course)
     {
+       
+        return view('courses.show', compact('course'));
     }
 
     /**

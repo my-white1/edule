@@ -58,272 +58,56 @@
                     <!-- All Courses Wrapper Start -->
                     <div class="courses-wrapper">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6">
-                                <!-- Single Courses Start -->
-                                <div class="single-courses">
-                                    <div class="courses-images">
-                                        <a href="courses-details.html"><img src="assets/images/courses/courses-01.jpg"
-                                                alt="Courses"></a>
-                                    </div>
-                                    <div class="courses-content">
-                                        <div class="courses-author">
-                                            <div class="author">
-                                                <div class="author-thumb">
-                                                    <a href="#"><img src="assets/images/author/author-01.jpg"
-                                                            alt="Author"></a>
-                                                </div>
-                                                <div class="author-name">
-                                                    <a class="name" href="#">Jason Williams</a>
-                                                </div>
-                                            </div>
-                                            <div class="tag">
-                                                <a href="#">Science</a>
-                                            </div>
+                            @foreach ($courses as $course)
+                                <div class="col-lg-4 col-md-6">
+                                    <!-- Single Courses Start -->
+                                    <div class="single-courses">
+                                        <div class="courses-images">
+                                            <a href="{{ route('course.show', $course->id) }}"><img
+                                                    src="{{ asset("uploads/courses/$course->image") }}" alt="Courses"></a>
                                         </div>
+                                        <div class="courses-content">
+                                            <div class="courses-author">
+                                                <div class="author">
+                                                    <div class="author-thumb">
+                                                        <a href="#"><img
+                                                                src="{{ asset('edule/assets/images/author/author-01.jpg') }}"
+                                                                alt="Author"></a>
+                                                    </div>
+                                                    <div class="author-name">
+                                                        <a class="name" href="#">Jason Williams</a>
+                                                    </div>
+                                                </div>
+                                                <div class="tag">
+                                                    <a href="#">Science</a>
+                                                </div>
+                                            </div>
 
-                                        <h4 class="title"><a href="courses-details.html">Data Science and Machine
-                                                Learning with Python - Hands On!</a></h4>
-                                        <div class="courses-meta">
-                                            <span> <i class="icofont-clock-time"></i> 08 hr 15 mins</span>
-                                            <span> <i class="icofont-read-book"></i> 29 Lectures </span>
-                                        </div>
-                                        <div class="courses-price-review">
-                                            <div class="courses-price">
-                                                <span class="sale-parice">$385.00</span>
-                                                <span class="old-parice">$440.00</span>
+                                            <h4 class="title"><a
+                                                    href="{{ route('course.show', $course->id) }}">{{ $course->title }}</a>
+                                            </h4>
+                                            <div class="courses-meta">
+                                                <span> <i class="icofont-clock-time"></i>
+                                                    {{ $course->created_at->format('m/d/Y') }}</span>
+                                                <span> <i class="icofont-read-book"></i> {{ $course->month }} </span>
                                             </div>
-                                            <div class="courses-review">
-                                                <span class="rating-count">4.9</span>
-                                                <span class="rating-star">
-                                                    <span class="rating-bar" style="width: 80%;"></span>
-                                                </span>
+                                            <div class="courses-price-review">
+                                                <div class="courses-price">
+                                                    <span class="sale-parice">{{ $course->price }}</span>
+                                                    {{-- <span class="old-parice">$440.00</span> --}}
+                                                </div>
+                                                <div class="courses-review">
+                                                    {{-- <span class="rating-count">{{ $course->group->room->title }}</span> --}}
+                                                    {{-- <span class="rating-star">
+                                                        <span class="rating-bar" style="width: 80%;"></span>
+                                                    </span> --}}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Single Courses End -->
                                 </div>
-                                <!-- Single Courses End -->
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <!-- Single Courses Start -->
-                                <div class="single-courses">
-                                    <div class="courses-images">
-                                        <a href="courses-details.html"><img src="assets/images/courses/courses-02.jpg"
-                                                alt="Courses"></a>
-                                    </div>
-                                    <div class="courses-content">
-                                        <div class="courses-author">
-                                            <div class="author">
-                                                <div class="author-thumb">
-                                                    <a href="#"><img src="assets/images/author/author-02.jpg"
-                                                            alt="Author"></a>
-                                                </div>
-                                                <div class="author-name">
-                                                    <a class="name" href="#">Pamela Foster</a>
-                                                </div>
-                                            </div>
-                                            <div class="tag">
-                                                <a href="#">Science</a>
-                                            </div>
-                                        </div>
-
-                                        <h4 class="title"><a href="courses-details.html">Create Amazing Color
-                                                Schemes for Your UX Design Projects</a></h4>
-                                        <div class="courses-meta">
-                                            <span> <i class="icofont-clock-time"></i> 08 hr 15 mins</span>
-                                            <span> <i class="icofont-read-book"></i> 29 Lectures </span>
-                                        </div>
-                                        <div class="courses-price-review">
-                                            <div class="courses-price">
-                                                <span class="sale-parice">$420.00</span>
-                                            </div>
-                                            <div class="courses-review">
-                                                <span class="rating-count">4.9</span>
-                                                <span class="rating-star">
-                                                    <span class="rating-bar" style="width: 80%;"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single Courses End -->
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <!-- Single Courses Start -->
-                                <div class="single-courses">
-                                    <div class="courses-images">
-                                        <a href="courses-details.html"><img src="assets/images/courses/courses-03.jpg"
-                                                alt="Courses"></a>
-                                    </div>
-                                    <div class="courses-content">
-                                        <div class="courses-author">
-                                            <div class="author">
-                                                <div class="author-thumb">
-                                                    <a href="#"><img src="assets/images/author/author-03.jpg"
-                                                            alt="Author"></a>
-                                                </div>
-                                                <div class="author-name">
-                                                    <a class="name" href="#">Rose Simmons</a>
-                                                </div>
-                                            </div>
-                                            <div class="tag">
-                                                <a href="#">Science</a>
-                                            </div>
-                                        </div>
-
-                                        <h4 class="title"><a href="courses-details.html">Culture & Leadership:
-                                                Strategies for a Successful Business</a></h4>
-                                        <div class="courses-meta">
-                                            <span> <i class="icofont-clock-time"></i> 08 hr 15 mins</span>
-                                            <span> <i class="icofont-read-book"></i> 29 Lectures </span>
-                                        </div>
-                                        <div class="courses-price-review">
-                                            <div class="courses-price">
-                                                <span class="sale-parice">$295.00</span>
-                                                <span class="old-parice">$340.00</span>
-                                            </div>
-                                            <div class="courses-review">
-                                                <span class="rating-count">4.9</span>
-                                                <span class="rating-star">
-                                                    <span class="rating-bar" style="width: 80%;"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single Courses End -->
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <!-- Single Courses Start -->
-                                <div class="single-courses">
-                                    <div class="courses-images">
-                                        <a href="courses-details.html"><img src="assets/images/courses/courses-04.jpg"
-                                                alt="Courses"></a>
-                                    </div>
-                                    <div class="courses-content">
-                                        <div class="courses-author">
-                                            <div class="author">
-                                                <div class="author-thumb">
-                                                    <a href="#"><img src="assets/images/author/author-04.jpg"
-                                                            alt="Author"></a>
-                                                </div>
-                                                <div class="author-name">
-                                                    <a class="name" href="#">Jason Williams</a>
-                                                </div>
-                                            </div>
-                                            <div class="tag">
-                                                <a href="#">Finance</a>
-                                            </div>
-                                        </div>
-
-                                        <h4 class="title"><a href="courses-details.html">Finance Series: Learn to
-                                                Budget and Calculate your Net Worth.</a></h4>
-                                        <div class="courses-meta">
-                                            <span> <i class="icofont-clock-time"></i> 08 hr 15 mins</span>
-                                            <span> <i class="icofont-read-book"></i> 29 Lectures </span>
-                                        </div>
-                                        <div class="courses-price-review">
-                                            <div class="courses-price">
-                                                <span class="sale-parice">Free</span>
-                                            </div>
-                                            <div class="courses-review">
-                                                <span class="rating-count">4.9</span>
-                                                <span class="rating-star">
-                                                    <span class="rating-bar" style="width: 80%;"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single Courses End -->
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <!-- Single Courses Start -->
-                                <div class="single-courses">
-                                    <div class="courses-images">
-                                        <a href="courses-details.html"><img src="assets/images/courses/courses-05.jpg"
-                                                alt="Courses"></a>
-                                    </div>
-                                    <div class="courses-content">
-                                        <div class="courses-author">
-                                            <div class="author">
-                                                <div class="author-thumb">
-                                                    <a href="#"><img src="assets/images/author/author-05.jpg"
-                                                            alt="Author"></a>
-                                                </div>
-                                                <div class="author-name">
-                                                    <a class="name" href="#">Jason Williams</a>
-                                                </div>
-                                            </div>
-                                            <div class="tag">
-                                                <a href="#">Marketing</a>
-                                            </div>
-                                        </div>
-
-                                        <h4 class="title"><a href="courses-details.html">Build Brand Into
-                                                Marketing: Tackling the New Marketing Landscape</a></h4>
-                                        <div class="courses-meta">
-                                            <span> <i class="icofont-clock-time"></i> 08 hr 15 mins</span>
-                                            <span> <i class="icofont-read-book"></i> 29 Lectures </span>
-                                        </div>
-                                        <div class="courses-price-review">
-                                            <div class="courses-price">
-                                                <span class="sale-parice">$136.00</span>
-                                            </div>
-                                            <div class="courses-review">
-                                                <span class="rating-count">4.9</span>
-                                                <span class="rating-star">
-                                                    <span class="rating-bar" style="width: 80%;"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single Courses End -->
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <!-- Single Courses Start -->
-                                <div class="single-courses">
-                                    <div class="courses-images">
-                                        <a href="courses-details.html"><img src="assets/images/courses/courses-06.jpg"
-                                                alt="Courses"></a>
-                                    </div>
-                                    <div class="courses-content">
-                                        <div class="courses-author">
-                                            <div class="author">
-                                                <div class="author-thumb">
-                                                    <a href="#"><img src="assets/images/author/author-06.jpg"
-                                                            alt="Author"></a>
-                                                </div>
-                                                <div class="author-name">
-                                                    <a class="name" href="#">Jason Williams</a>
-                                                </div>
-                                            </div>
-                                            <div class="tag">
-                                                <a href="#">Design</a>
-                                            </div>
-                                        </div>
-
-                                        <h4 class="title"><a href="courses-details.html">Graphic Design:
-                                                Illustrating Badges and Icons with Geometric Shapes</a></h4>
-                                        <div class="courses-meta">
-                                            <span> <i class="icofont-clock-time"></i> 08 hr 15 mins</span>
-                                            <span> <i class="icofont-read-book"></i> 29 Lectures </span>
-                                        </div>
-                                        <div class="courses-price-review">
-                                            <div class="courses-price">
-                                                <span class="sale-parice">$237.00</span>
-                                            </div>
-                                            <div class="courses-review">
-                                                <span class="rating-count">4.9</span>
-                                                <span class="rating-star">
-                                                    <span class="rating-bar" style="width: 80%;"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single Courses End -->
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <!-- All Courses Wrapper End -->

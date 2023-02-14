@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminCoursesController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +31,7 @@ Route::get('/', [HomeController::class , 'index'])->name('home');
 Route::get('/blog', [BlogController::class , 'index'])->name('blog');
 Route::get('/contact', [ContactController::class , 'index'])->name('contact');
 Route::get('/course', [CourseController::class , 'index'])->name('course');
+Route::get('/course/{course}', [CourseController::class , 'show'])->name('course.show');
 Route::get('/blog/show/{post}', [BlogController::class , 'show'])->name('blog.show');
 
 Route::resource('permissions', PermissionController::class);
@@ -45,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::resource('/users', UsersController::class);
     Route::resource('/courses', AdminCoursesController::class);
+    Route::resource('/workers', WorkerController::class);
     Route::resource('/groups', GroupController::class);
     Route::resource('/rooms', RoomController::class);
     Route::resource('/roles', RoleController::class);

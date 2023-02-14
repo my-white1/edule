@@ -13,6 +13,10 @@ class Course extends Model
         'title',
         'price',
         'month',
+        'image',
+        'description',
+        'Certificate',
+        'course_certificate',
     ];
 
     public function groups()

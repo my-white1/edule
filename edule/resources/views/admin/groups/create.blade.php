@@ -9,7 +9,7 @@
         <div class="card-body p-3">
             <div class="container-fluid py-4">
                 <div class="col-md-6">
-                    <form action="{{ route('groups.store') }}" method="POST">
+                    <form action="{{ route('groups.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row col-md-12">
                             <div class="form-group">

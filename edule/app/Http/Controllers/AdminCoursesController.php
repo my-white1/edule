@@ -40,9 +40,18 @@ class AdminCoursesController extends Controller
         $request->validate([
             'title' => 'required|min:3|max:255',
             'price' => 'required|max:255',
+            'description' => 'required',
+            'Certificate' => 'required',
         ]);
-        
-        Course::create($request->all());
+
+        $course = $request->all();
+
+        $file = $request->file('image');
+        $image_name = uniqid() . $file->getClientOriginalName();
+        $course['image'] = $image_name;
+        $file->move(public_path('uploads/courses'), $image_name);
+
+        Course::create($course);
 
         return redirect()->route('courses.index');
     }
@@ -68,7 +77,7 @@ class AdminCoursesController extends Controller
     {
         return view('admin.courses.edit', compact('course'));
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -83,12 +92,27 @@ class AdminCoursesController extends Controller
             'title' => 'required|min:3|max:255',
             'price' => 'required|max:255',
         ]);
-        
-        $course->update($request->all());
-        
-        return redirect()->route('courses.index');
+
+        if (!$request->file('image')) {
+
+            $course->update($request->all());
+
+            return redirect()->route('courses.index');
+
+        } else {
+            $new_course = $request->all();
+            unlink(public_path("uploads/courses/$course->image"));
+            $file = $request->file('image');
+            $image_name = uniqid() . $file->getClientOriginalName();
+            $file->move(public_path('uploads/courses/'), $image_name);
+            $new_course['image'] = $image_name;
+
+            $course->update($new_course);
+
+            return redirect()->route('courses.index');
+        }
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -97,8 +121,8 @@ class AdminCoursesController extends Controller
      */
     public function destroy(Course $course)
     {
+        unlink(public_path("uploads/courses/$course->image"));
         $course->delete();
-
         return redirect()->back();
     }
 }

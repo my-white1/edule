@@ -40,13 +40,20 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $user = $request->all();
+
         $request->validate([
             'name' => 'required|min:3|max:255',
             'email' => 'required|email|max:255',
             'password' => 'required|min:6|max:255|confirmed',
         ]);
 
-        $user = User::create($request->all());
+        $file = $request->file('image');
+        $image_name = uniqid() . $file->getClientOriginalName();
+        $user['image'] = $image_name;
+        $file->move(public_path('uploads/users'), $image_name);
+
+        $user = User::create($user);
 
         $user->roles()->sync($request->roles);
 
@@ -75,7 +82,7 @@ class UsersController extends Controller
 
         $roles = Role::pluck('title', 'id');
 
-        return view('admin.users.edit', compact('roles' , 'user'));
+        return view('admin.users.edit', compact('roles', 'user'));
     }
 
     /**
@@ -92,11 +99,27 @@ class UsersController extends Controller
             'email' => 'required|email|max:255',
         ]);
 
-        $user->update($request->all());
+        if (!$request->file('image')) {
+            $user->update($request->all());
 
-        $user->roles()->sync($request->roles);
+            $user->roles()->sync($request->roles);
 
-        return redirect()->route('users.index');
+            return redirect()->route('users.index');
+
+        } else {
+            $new_user = $request->all();
+            unlink(public_path("uploads/users/$user->image"));
+            $file = $request->file('image');
+            $image_name = uniqid() . $file->getClientOriginalName();
+            $file->move(public_path('uploads/users/'), $image_name);
+            $new_user['image'] = $image_name;
+
+            $user->roles()->sync($request->roles);
+            
+            $user->update($new_user);
+
+            return redirect()->route('users.index');
+        }
     }
 
     /**
@@ -107,6 +130,9 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
+        // unlink(public_path("uploads/users/$user->image"));
+
+        $user->roles()->sync([]);
         $user->delete();
 
         return redirect()->back();
